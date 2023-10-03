@@ -6,12 +6,12 @@
 /datum/action/cooldown/necro/finisher
 	name = "finisher"
 	desc = "Allows you to deal extraordinary amounts of damage to weakened humans, guarantees death of its victims upon completion."
-	cooldown_time = 2 SECONDS
-	rush_time = 4 SECONDS
-	click_to_activate = TRUE
+	/// The maximum amount of time we're rushing the target for a finisher
+	var/rush_time = 4 SECONDS
 	/// Delay before the finisher does a rush towards its target to force a grapple
 	var/rush_delay = 2 SECONDS
-	/// The maximum amount of time we're rushing the target for a finisher
+	click_to_activate = TRUE
+	/// Timer to compare world.time
 	var/finisher_end
 	/// Initial damage dealt to the target's head when starting the finisher
 	var/finisher_damage = 30
