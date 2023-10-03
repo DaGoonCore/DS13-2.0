@@ -28,6 +28,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TABLES
 	canSmoothWith = SMOOTH_GROUP_TABLES
+	loc_procs = CROSSED|UNCROSSED|EXIT
 	flags_1 = BUMP_PRIORITY_1
 
 	var/frame = /obj/structure/table_frame
@@ -48,9 +49,6 @@
 
 	var/static/list/loc_connections = list(
 		COMSIG_CARBON_DISARM_COLLIDE = PROC_REF(table_carbon),
-		COMSIG_ATOM_ENTERED = PROC_REF(on_crossed),
-		COMSIG_ATOM_EXIT = PROC_REF(check_exit),
-		COMSIG_ATOM_EXITTED = PROC_REF(on_uncrossed),
 	)
 
 	AddElement(/datum/element/connect_loc, loc_connections)
@@ -175,17 +173,17 @@
 	if(caller)
 		. = . || (caller.pass_flags & PASSTABLE) || (flipped == TRUE && (dir != to_dir))
 
-/obj/structure/table/proc/check_exit(datum/source, atom/movable/leaving, direction)
-	SIGNAL_HANDLER
+/obj/structure/table/Exit(atom/movable/leaving, direction)
+	. = ..()
 	if(!density)
 		return
 
 	if(isprojectile(leaving) && !check_cover(leaving, get_turf(leaving)))
 		leaving.Bump(src)
-		return COMPONENT_ATOM_BLOCK_EXIT
+		return FALSE
 
 	if(flipped == TRUE && (direction & dir))
-		return COMPONENT_ATOM_BLOCK_EXIT
+		return FALSE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/projectile/P, turf/from)
@@ -213,8 +211,7 @@
 		return FALSE //blocked
 	return TRUE
 
-/obj/structure/table/proc/on_crossed(atom/movable/crossed_by, oldloc, list/old_locs)
-	SIGNAL_HANDLER
+/obj/structure/table/Crossed(atom/movable/crossed_by, oldloc, list/old_locs)
 	if(!isliving(crossed_by))
 		return
 
@@ -222,8 +219,7 @@
 		if(!HAS_TRAIT(crossed_by, TRAIT_TABLE_RISEN))
 			ADD_TRAIT(crossed_by, TRAIT_TABLE_RISEN, TRAIT_GENERIC)
 
-/obj/structure/table/proc/on_uncrossed(atom/movable/gone, direction)
-	SIGNAL_HANDLER
+/obj/structure/table/Uncrossed(atom/movable/gone, direction)
 	if(!isliving(gone))
 		return
 
@@ -233,7 +229,7 @@
 
 /obj/structure/table/setDir(ndir)
 	. = ..()
-	if(dir != NORTH && dir != 0 && (flipped > 0))
+	if(dir != NORTH && dir != 0)
 		layer = ABOVE_MOB_LAYER
 	else
 		layer = TABLE_LAYER
@@ -527,14 +523,14 @@
 	if(mover.pass_flags & PASSGLASS)
 		return TRUE
 
-/obj/structure/table/glass/check_exit(datum/source, atom/movable/leaving, direction)
+/obj/structure/table/glass/Exit(atom/movable/leaving, direction)
 	. = ..()
 	if(. || !flipped)
 		return
 	if(leaving.pass_flags & PASSGLASS)
-		return COMPONENT_ATOM_BLOCK_EXIT
+		return TRUE
 
-/obj/structure/table/glass/on_crossed(atom/movable/crossed_by, oldloc)
+/obj/structure/table/glass/Crossed(atom/movable/crossed_by, oldloc)
 	. = ..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return
@@ -638,61 +634,70 @@
 	framestack = /obj/item/stack/rods
 	buildstack = /obj/item/stack/tile/carpet
 	smoothing_groups = SMOOTH_GROUP_FANCY_WOOD_TABLES //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
-	canSmoothWith = SMOOTH_GROUP_FANCY_WOOD_TABLES // see Initialize()
+	canSmoothWith = SMOOTH_GROUP_FANCY_WOOD_TABLES
+	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
+
+/obj/structure/table/wood/fancy/Initialize(mapload)
+	. = ..()
+	// Needs to be set dynamically because table smooth sprites are 32x34,
+	// which the editor treats as a two-tile-tall object. The sprites are that
+	// size so that the north/south corners look nice - examine the detail on
+	// the sprites in the editor to see why.
+	icon = smooth_icon
 
 /obj/structure/table/wood/fancy/black
-	icon_state = "fancy_table_black-0"
+	icon_state = "fancy_table_black"
 	base_icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
-	icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
 
 /obj/structure/table/wood/fancy/blue
-	icon_state = "fancy_table_blue-0"
+	icon_state = "fancy_table_blue"
 	base_icon_state = "fancy_table_blue"
 	buildstack = /obj/item/stack/tile/carpet/blue
-	icon = 'icons/obj/smooth_structures/fancy_table_blue.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_blue.dmi'
 
 /obj/structure/table/wood/fancy/cyan
-	icon_state = "fancy_table_cyan-0"
+	icon_state = "fancy_table_cyan"
 	base_icon_state = "fancy_table_cyan"
 	buildstack = /obj/item/stack/tile/carpet/cyan
-	icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
 
 /obj/structure/table/wood/fancy/green
-	icon_state = "fancy_table_green-0"
+	icon_state = "fancy_table_green"
 	base_icon_state = "fancy_table_green"
 	buildstack = /obj/item/stack/tile/carpet/green
-	icon = 'icons/obj/smooth_structures/fancy_table_green.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_green.dmi'
 
 /obj/structure/table/wood/fancy/orange
-	icon_state = "fancy_table_orange-0"
+	icon_state = "fancy_table_orange"
 	base_icon_state = "fancy_table_orange"
 	buildstack = /obj/item/stack/tile/carpet/orange
-	icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
 
 /obj/structure/table/wood/fancy/purple
-	icon_state = "fancy_table_purple-0"
+	icon_state = "fancy_table_purple"
 	base_icon_state = "fancy_table_purple"
 	buildstack = /obj/item/stack/tile/carpet/purple
-	icon = 'icons/obj/smooth_structures/fancy_table_purple.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_purple.dmi'
 
 /obj/structure/table/wood/fancy/red
-	icon_state = "fancy_table_red-0"
+	icon_state = "fancy_table_red"
 	base_icon_state = "fancy_table_red"
 	buildstack = /obj/item/stack/tile/carpet/red
-	icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
 
 /obj/structure/table/wood/fancy/royalblack
-	icon_state = "fancy_table_royalblack-0"
+	icon_state = "fancy_table_royalblack"
 	base_icon_state = "fancy_table_royalblack"
 	buildstack = /obj/item/stack/tile/carpet/royalblack
-	icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
 
 /obj/structure/table/wood/fancy/royalblue
-	icon_state = "fancy_table_royalblue-0"
+	icon_state = "fancy_table_royalblue"
 	base_icon_state = "fancy_table_royalblue"
 	buildstack = /obj/item/stack/tile/carpet/royalblue
-	icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
 
 /*
  * Reinforced tables
@@ -805,6 +810,7 @@
 	buckle_lying = NO_BUCKLE_LYING
 	buckle_requires_restraints = TRUE
 	custom_materials = list(/datum/material/silver = 2000)
+	loc_procs = UNCROSSED
 
 	var/obj/machinery/vitals_monitor/connected_monitor
 	var/mob/living/carbon/human/patient = null
@@ -826,7 +832,7 @@
 	else
 		return ..()
 
-/obj/structure/table/optable/on_uncrossed(atom/movable/gone, direction)
+/obj/structure/table/optable/Uncrossed(atom/movable/gone, direction)
 	. = ..()
 	if(gone == patient)
 		set_patient(null)

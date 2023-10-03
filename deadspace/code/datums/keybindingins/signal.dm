@@ -1,5 +1,6 @@
 /datum/keybinding/marker_signal
 	category = CATEGORY_MISC
+	weight = WEIGHT_MOB
 
 /datum/keybinding/marker_signal/can_use(client/user)
 	return ismarkereye(user.mob)

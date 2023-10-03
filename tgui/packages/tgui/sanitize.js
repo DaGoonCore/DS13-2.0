@@ -43,7 +43,7 @@ let defTag = [
   'u',
   'ul',
 ];
-let defAttr = ['class', 'style', 'background'];
+let defAttr = ['class', 'style'];
 
 /**
  * Feed it a string and it should spit out a sanitized version.

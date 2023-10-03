@@ -181,9 +181,6 @@
 	if(signal_return & COMPONENT_SKIP_ATTACK)
 		return
 
-	if(!user.combat_mode)
-		return
-
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, params)
 
 	if(item_flags & NOBLUDGEON)

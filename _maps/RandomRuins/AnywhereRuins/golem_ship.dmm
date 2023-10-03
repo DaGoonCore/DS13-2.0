@@ -70,6 +70,10 @@
 "l" = (
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
+"m" = (
+/obj/effect/mob_spawn/ghost_role/human/golem/adamantine,
+/turf/open/floor/mineral/titanium/purple,
+/area/ruin/powered/golem_ship)
 "n" = (
 /obj/machinery/mineral/equipment_vendor/golem,
 /turf/open/floor/mineral/titanium/purple,
@@ -175,6 +179,7 @@
 /obj/item/storage/medkit/brute,
 /obj/structure/table/wood,
 /obj/item/storage/medkit/brute,
+/obj/item/disk/data/golem_shell,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
 "E" = (
@@ -209,6 +214,11 @@
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
+"M" = (
+/obj/effect/mob_spawn/ghost_role/human/golem/adamantine,
+/obj/machinery/light/small/directional/north,
+/turf/open/floor/mineral/titanium/purple,
+/area/ruin/powered/golem_ship)
 "N" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium/purple,
@@ -224,6 +234,11 @@
 "T" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/titanium,
+/turf/open/floor/mineral/titanium/purple,
+/area/ruin/powered/golem_ship)
+"U" = (
+/obj/effect/mob_spawn/ghost_role/human/golem/adamantine,
+/obj/machinery/light/small/directional/south,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
 "V" = (
@@ -387,14 +402,14 @@ b
 c
 I
 b
-L
+M
 o
 b
 l
 l
 G
 o
-Q
+U
 b
 V
 F
@@ -405,14 +420,14 @@ b
 c
 f
 b
-l
+m
 o
 b
 l
 l
 G
 o
-l
+m
 b
 f
 F

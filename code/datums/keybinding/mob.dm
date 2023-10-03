@@ -1,5 +1,6 @@
 /datum/keybinding/mob
 	category = CATEGORY_HUMAN
+	weight = WEIGHT_MOB
 
 /datum/keybinding/mob/stop_pulling
 	hotkey_keys = list("H", "Delete")

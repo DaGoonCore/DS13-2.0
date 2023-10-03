@@ -14,6 +14,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	layer = MOB_LAYER
 	simulated = FALSE
+	loc_procs = CROSSED
 
 	//The sound this plays on impact.
 	var/hitsound = 'sound/weapons/pierce.ogg'
@@ -211,16 +212,11 @@
 	/// If true directly targeted turfs can be hit
 	var/can_hit_turfs = FALSE
 
-	var/static/list/projectile_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	)
-
 /obj/projectile/Initialize(mapload)
 	. = ..()
 	decayedRange = range
 	if(embedding)
 		updateEmbedding()
-	AddElement(/datum/element/connect_loc, projectile_connections)
 
 /obj/projectile/proc/Range()
 	range--
@@ -508,7 +504,7 @@
  *
  * @params
  * T - The turf
- * target - The "preferred" atom to hit, usually what we BumpedBy() first.
+ * target - The "preferred" atom to hit, usually what we Bumped() first.
  * bumped - used to track if something is the reason we impacted in the first place.
  *    If set, this atom is always treated as dense by can_hit_target.
  *
@@ -629,11 +625,8 @@
 /**
  * Projectile crossed: When something enters a projectile's tile, make sure the projectile hits it if it should be hitting it.
  */
-/obj/projectile/proc/on_entered(datum/source, atom/movable/AM)
-	SIGNAL_HANDLER
-	if(AM == src)
-		return
-	scan_crossed_hit(AM)
+/obj/projectile/Crossed(atom/movable/crossed_by, oldloc)
+	scan_crossed_hit(crossed_by)
 
 /**
  * Projectile can pass through

@@ -91,6 +91,7 @@
 	strip_delay = 20
 	equip_delay_other = 40
 	lace_time = 8 SECONDS
+	species_exception = list(/datum/species/golem/uranium)
 
 /obj/item/clothing/shoes/workboots/Initialize(mapload)
 	. = ..()

@@ -27,7 +27,7 @@
 	path = /obj/item/organ/lungs/cybernetic
 
 /datum/augment_item/organ/lungs/can_apply_to_species(datum/species/S)
-	return S.organs[ORGAN_SLOT_LUNGS]
+	return !(TRAIT_NOBREATH in S.inherent_traits)
 
 //LIVERS
 /datum/augment_item/organ/liver
@@ -38,7 +38,7 @@
 	path = /obj/item/organ/liver/cybernetic
 
 /datum/augment_item/organ/liver/can_apply_to_species(datum/species/S)
-	return S.organs[ORGAN_SLOT_LIVER]
+	return !(TRAIT_NOMETABOLISM in S.inherent_traits)
 
 //STOMACHES
 /datum/augment_item/organ/stomach
@@ -49,7 +49,7 @@
 	path = /obj/item/organ/stomach/cybernetic
 
 /datum/augment_item/organ/stomach/can_apply_to_species(datum/species/S)
-	return S.organs[ORGAN_SLOT_LIVER]
+	return !(TRAIT_NOHUNGER in S.inherent_traits)
 
 //EYES
 /datum/augment_item/organ/eyes

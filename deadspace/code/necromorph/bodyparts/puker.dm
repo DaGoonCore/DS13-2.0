@@ -7,7 +7,6 @@
 	px_x = 0
 	px_y = 0
 	wound_resistance = 10
-	biomass = 17.5
 
 /obj/item/bodypart/head/necromorph/puker
 	name = BODY_ZONE_HEAD
@@ -18,7 +17,6 @@
 	px_x = 0
 	px_y = -8
 	wound_resistance = 5
-	biomass = 15
 
 /obj/item/bodypart/arm/left/necromorph/puker
 	name = "left blade"
@@ -31,7 +29,6 @@
 	px_x = -6
 	px_y = 0
 	wound_resistance = 0
-	biomass = 7.5
 
 /obj/item/bodypart/arm/right/necromorph/puker
 	name = "right blade"
@@ -44,7 +41,6 @@
 	px_x = 6
 	px_y = 0
 	wound_resistance = 0
-	biomass = 7.5
 
 /obj/item/bodypart/leg/left/necromorph/puker
 	name = "left leg"
@@ -57,7 +53,6 @@
 	px_x = -2
 	px_y = 12
 	wound_resistance = 0
-	biomass = 7.5
 
 /obj/item/bodypart/leg/right/necromorph/puker
 	name = "right leg"
@@ -70,4 +65,3 @@
 	px_x = 2
 	px_y = 12
 	wound_resistance = 0
-	biomass = 7.5

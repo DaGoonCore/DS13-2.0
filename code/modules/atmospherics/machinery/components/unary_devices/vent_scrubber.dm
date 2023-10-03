@@ -250,11 +250,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/receive_signal(datum/signal/signal)
 	if(!is_operational || !signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
 		return
-
-	if("status" in signal.data)
-		broadcast_status()
-		return //do not update_appearance
-
 	COOLDOWN_RESET(src, hibernating)
 
 	var/old_quicksucc = quicksucc
@@ -287,6 +282,14 @@
 	if("set_filters" in signal.data)
 		filter_types = list()
 		add_filters(signal.data["set_filters"])
+
+	if("init" in signal.data)
+		name = signal.data["init"]
+		return
+
+	if("status" in signal.data)
+		broadcast_status()
+		return //do not update_appearance
 
 	broadcast_status()
 	update_appearance()
