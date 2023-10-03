@@ -21,6 +21,7 @@
 /datum/sprite_accessory/vox_snouts
 	icon = 'icons/mob/species/vox/vox_snouts.dmi'
 	em_block = TRUE
+	color_src = MUTCOLORS2
 
 /datum/sprite_accessory/vox_snouts/vox
 	name = "Vox Snout"

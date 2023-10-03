@@ -189,7 +189,7 @@
 	. = ..()
 	if(!can_interact(user))
 		return
-	if(!user.canUseTopic(src, USE_CLOSE|USE_SILICON_REACH))
+	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 
 	eject_disk(user)

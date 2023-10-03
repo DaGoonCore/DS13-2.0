@@ -34,7 +34,7 @@
 /area/ruin/powered/greed)
 "j" = (
 /obj/structure/table/wood/poker,
-/obj/item/coin/mythril,
+/obj/item/coin/adamantine,
 /turf/open/floor/carpet,
 /area/ruin/powered/greed)
 "k" = (

@@ -31,7 +31,6 @@
 	default_price = PAYCHECK_ASSISTANT * 0.7
 	extra_price = PAYCHECK_MEDIUM
 	payment_department = ACCOUNT_STATION_MASTER
-	biomass_produce = BIOMASS_HARVEST_SMALL
 
 
 /obj/item/vending_refill/cola

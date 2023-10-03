@@ -138,6 +138,10 @@ Reproductive extracts:
 	extract_type = /obj/item/slime_extract/lightpink
 	colour = "light pink"
 
+/obj/item/slimecross/reproductive/adamantine
+	extract_type = /obj/item/slime_extract/adamantine
+	colour = "adamantine"
+
 /obj/item/slimecross/reproductive/rainbow
 	extract_type = /obj/item/slime_extract/rainbow
 	colour = "rainbow"

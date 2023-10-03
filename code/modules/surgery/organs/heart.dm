@@ -73,7 +73,7 @@
 	. = ..()
 	handle_pulse()
 	// If the owner doesn't need a heart, we don't need to do anything with it.
-	if(!owner.needs_organ(ORGAN_SLOT_HEART))
+	if(!owner.needs_heart())
 		return
 	if(pulse)
 		handle_heartbeat()
@@ -166,6 +166,9 @@
 		owner.playsound_local(owner, slowbeat, 55, 0, channel = CHANNEL_HEARTBEAT, pressure_affected = FALSE, use_reverb = FALSE)
 		beat = BEAT_SLOW
 
+/obj/item/organ/heart/get_availability(datum/species/owner_species)
+	return !(NOBLOOD in owner_species.species_traits)
+
 /obj/item/organ/heart/get_scan_results(tag)
 	. = ..()
 	if(pulse == PULSE_NONE)
@@ -206,7 +209,7 @@
 	. = ..()
 
 	// If the owner doesn't need a heart, we don't need to do anything with it.
-	if(!owner.needs_organ(ORGAN_SLOT_HEART))
+	if(!owner.needs_heart())
 		return
 
 	if(. & EMP_PROTECT_SELF)

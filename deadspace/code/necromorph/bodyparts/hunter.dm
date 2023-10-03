@@ -7,7 +7,6 @@
 	px_x = 0
 	px_y = 0
 	wound_resistance = 10
-	biomass = 90 //Most biomass stored in chest due to regeneration
 
 /obj/item/bodypart/head/necromorph/hunter
 	name = BODY_ZONE_HEAD
@@ -18,7 +17,6 @@
 	px_x = 0
 	px_y = -8
 	wound_resistance = 5
-	biomass = 30
 
 /obj/item/bodypart/arm/left/necromorph/hunter
 	name = "left blade"
@@ -31,7 +29,6 @@
 	px_x = -6
 	px_y = 0
 	wound_resistance = 0
-	biomass = 20
 
 /obj/item/bodypart/arm/right/necromorph/hunter
 	name = "right blade"
@@ -44,7 +41,6 @@
 	px_x = 6
 	px_y = 0
 	wound_resistance = 0
-	biomass = 20
 
 /obj/item/bodypart/leg/left/necromorph/hunter
 	name = "left leg"
@@ -57,7 +53,6 @@
 	px_x = -2
 	px_y = 12
 	wound_resistance = 0
-	biomass = 20
 
 /obj/item/bodypart/leg/right/necromorph/hunter
 	name = "right leg"
@@ -70,4 +65,3 @@
 	px_x = 2
 	px_y = 12
 	wound_resistance = 0
-	biomass = 20

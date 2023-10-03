@@ -1,5 +1,6 @@
 /datum/keybinding/emote
 	category = CATEGORY_EMOTE
+	weight = WEIGHT_EMOTE
 	keybind_signal = COMSIG_KB_EMOTE
 	var/emote_key
 

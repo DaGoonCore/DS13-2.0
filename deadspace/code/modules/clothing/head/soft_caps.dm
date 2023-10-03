@@ -10,10 +10,3 @@
 	icon = 'deadspace/icons/obj/clothing/hats.dmi'
 	worn_icon = 'deadspace/icons/mob/onmob/head.dmi'
 	icon_state = "firstlieutenant"
-
-/obj/item/clothing/head/caphat/cec
-	name = "captain's cap"
-	icon = 'deadspace/icons/obj/clothing/hats.dmi'
-	worn_icon = 'deadspace/icons/mob/onmob/head.dmi'
-	icon_state = "capcap"
-

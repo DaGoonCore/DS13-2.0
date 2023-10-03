@@ -10,6 +10,10 @@
 
 /obj/machinery/bodyscanner/Initialize(mapload)
 	. = ..()
+	if(!(dir & (EAST|WEST)))
+		stack_trace("A bodyscanner was initialized with an invalid direction")
+		return INITIALIZE_HINT_QDEL
+
 	rediscover()
 
 /obj/machinery/bodyscanner/Destroy()
@@ -25,6 +29,9 @@
 		icon_state = "body_scanner_open"
 
 /obj/machinery/bodyscanner/setDir(ndir)
+	if(!(dir & (EAST|WEST)))
+		return
+
 	. = ..()
 	rediscover()
 
@@ -81,7 +88,7 @@
 
 /obj/machinery/bodyscanner/AltClick(mob/user)
 	. = ..()
-	if(!user.canUseTopic(src, USE_CLOSE|USE_SILICON_REACH))
+	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	eject_occupant(user)
 
@@ -126,8 +133,13 @@
 	/// Data! Maybe there's something to be done with data disks here.
 	var/list/scan
 
+
 /obj/machinery/bodyscanner_console/Initialize(mapload)
 	. = ..()
+	if(!(dir & (EAST|WEST)))
+		stack_trace("A bodyscanner console was initialized with an invalid direction")
+		return INITIALIZE_HINT_QDEL
+
 	rediscover()
 
 /obj/machinery/bodyscanner_console/Destroy()
@@ -137,6 +149,9 @@
 	return ..()
 
 /obj/machinery/bodyscanner_console/setDir(ndir)
+	if(!(dir & (EAST|WEST)))
+		return
+
 	. = ..()
 	rediscover()
 

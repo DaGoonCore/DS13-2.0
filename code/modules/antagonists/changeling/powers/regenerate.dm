@@ -24,9 +24,12 @@
 				and tearing!</span>")
 			C.emote("scream")
 			C.regenerate_limbs()
-		if(!user.getorganslot(ORGAN_SLOT_BRAIN) && user.needs_organ(ORGAN_SLOT_BRAIN))
-			var/obj/item/organ/brain/B = C.dna.species.organs[ORGAN_SLOT_BRAIN]
-			B = new B()
+		if(!user.getorganslot(ORGAN_SLOT_BRAIN))
+			var/obj/item/organ/brain/B
+			if(C.has_dna() && C.dna.species.mutantbrain)
+				B = new C.dna.species.mutantbrain()
+			else
+				B = new()
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
 			B.Insert(C)

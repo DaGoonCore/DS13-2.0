@@ -1,5 +1,6 @@
 /datum/keybinding/robot
 	category = CATEGORY_ROBOT
+	weight = WEIGHT_ROBOT
 
 /datum/keybinding/robot/can_use(client/user)
 	return iscyborg(user.mob)

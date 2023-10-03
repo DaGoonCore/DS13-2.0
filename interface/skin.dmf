@@ -1,10 +1,12 @@
 macro "default"
-	elem "PROTECTED-Shift"
+	elem ".winset :map.right-click=false"
+		name = "SHIFT+Shift"
+	elem "Shift"
 		name = "SHIFT"
-		command = ".winset :map.right-click=false\nKeyDown Shift"
-	elem "PROTECTED-ShiftUp"
+		command = ".winset :map.right-click=false"
+	elem "ShiftUp"
 		name = "SHIFT+UP"
-		command = ".winset :map.right-click=true\nKeyUp Shift"
+		command = ".winset :map.right-click=true"
 
 
 menu "menu"
