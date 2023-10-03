@@ -13,6 +13,7 @@
 	bodytype = BODYTYPE_HUMANOID|BODYTYPE_ORGANIC|BODYTYPE_NECROMORPH
 
 	max_bodypart_count = 6
+	burnmod = 1.2
 
 	examine_limb_id = SPECIES_NECROMORPH
 	exotic_bloodtype = "X"
@@ -59,18 +60,17 @@
 		NOTRANSSTING,
 		NOZOMBIE,
 		NO_UNDERWEAR,
-		NOSTOMACH ,
 		NO_DNA_COPY,
 		AGENDER,
-		HAS_FLESH,
-		HAS_BONE,
-		NOAUGMENTS
+		NOAUGMENTS,
+		NOEYESPRITES,
 	)
 
 	inherent_traits = list()
 	inherent_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_HUMANOID
 	inherent_factions = list(FACTION_NECROMORPH)
 	species_mob_size = MOB_SIZE_HUMAN
+	fire_overlay = "generic_burning"
 
 /datum/species/necromorph/check_roundstart_eligible()
 	return FALSE
